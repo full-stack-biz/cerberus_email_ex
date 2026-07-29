@@ -38,6 +38,7 @@ defmodule CerberusEmail.Components do
       assigns
       |> assign(:email_title, assigns.email_title || assigns.brand_name)
       |> assign(:footer_text, assigns.footer_text || assigns.brand_name)
+      |> assign(:_head_styles, head_styles(assigns.font_family, assigns.primary_color))
 
     ~H"""
     <!DOCTYPE html>
@@ -56,163 +57,7 @@ defmodule CerberusEmail.Components do
         <meta name="color-scheme" content="light" />
         <meta name="supported-color-schemes" content="light" />
         <title>{@email_title}</title>
-
-    <!--[if gte mso 9]>
-      <xml>
-        <o:OfficeDocumentSettings>
-          <o:AllowPNG/>
-          <o:PixelsPerInch>96</o:PixelsPerInch>
-        </o:OfficeDocumentSettings>
-      </xml>
-      <![endif]-->
-
-      <!--[if mso]>
-      <style>
-        * {
-          font-family: {@font_family} !important;
-        }
-      </style>
-      <![endif]-->
-
-      <!--[if !mso]><!-->
-        <link
-          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
-          rel="stylesheet"
-          type="text/css"
-        />
-        <!--<![endif]-->
-
-        <style>
-          * {
-            font-family: {@font_family} !important;
-          }
-
-          :root {
-            color-scheme: light;
-            supported-color-schemes: light;
-          }
-
-          html, body {
-            margin: 0 auto !important;
-            padding: 0 !important;
-            height: 100% !important;
-            width: 100% !important;
-          }
-
-          * {
-            -ms-text-size-adjust: 100%;
-            -webkit-text-size-adjust: 100%;
-          }
-
-          div[style*="margin: 16px 0"] {
-            margin: 0 !important;
-          }
-
-          #MessageViewBody, #MessageWebViewDiv{
-            width: 100% !important;
-          }
-
-          table, td {
-            mso-table-lspace: 0pt !important;
-            mso-table-rspace: 0pt !important;
-          }
-
-          table {
-            border-spacing: 0 !important;
-            border-collapse: collapse !important;
-            table-layout: fixed !important;
-            margin: 0 auto !important;
-          }
-
-          img {
-            -ms-interpolation-mode:bicubic;
-          }
-
-          a {
-            text-decoration: none;
-          }
-
-          a[x-apple-data-detectors], .unstyle-auto-detected-links a, .aBn {
-            border-bottom: 0 !important;
-            cursor: default !important;
-            color: inherit !important;
-            text-decoration: none !important;
-            font-size: inherit !important;
-            font-family: inherit !important;
-            font-weight: inherit !important;
-            line-height: inherit !important;
-          }
-
-          .im {
-            color: inherit !important;
-          }
-
-          .a6S {
-            display: none !important;
-            opacity: 0.01 !important;
-          }
-
-          img.g-img + div {
-            display: none !important;
-          }
-
-          @media only screen and (min-device-width: 320px) and (max-device-width: 374px) {
-            u ~ div .email-container {
-              min-width: 320px !important;
-            }
-          }
-
-          @media only screen and (min-device-width: 375px) and (max-device-width: 413px) {
-            u ~ div .email-container {
-              min-width: 375px !important;
-            }
-          }
-
-          @media only screen and (min-device-width: 414px) {
-            u ~ div .email-container {
-              min-width: 414px !important;
-            }
-          }
-
-          .button-td, .button-a {
-            transition: all 100ms ease-in;
-          }
-
-          .button-td-primary:hover, .button-a-primary:hover {
-            background: {@primary_color} !important;
-            border-color: {@primary_color} !important;
-            filter: brightness(0.85);
-          }
-
-          @media screen and (max-width: 480px) {
-            .stack-column, .stack-column-center {
-              display: block !important;
-              width: 100% !important;
-              max-width: 100% !important;
-              direction: ltr !important;
-            }
-
-            .stack-column-center {
-              text-align: center !important;
-            }
-
-            .center-on-narrow {
-              text-align: center !important;
-              display: block !important;
-              margin-left: auto !important;
-              margin-right: auto !important;
-              float: none !important;
-            }
-
-            table.center-on-narrow {
-              display: inline-block !important;
-            }
-
-            .email-container p {
-              font-size: 17px !important;
-            }
-          }
-        </style>
+        {@_head_styles}
       </head>
 
       <body
@@ -577,5 +422,168 @@ defmodule CerberusEmail.Components do
       </td>
     </tr>
     """
+  end
+
+  # HEEx does not interpolate inside <style> or HTML comment blocks, so font_family
+  # and primary_color are injected via Elixir string interpolation into a raw HTML string.
+  defp head_styles(font_family, primary_color) do
+    Phoenix.HTML.raw("""
+    <!--[if gte mso 9]>
+      <xml>
+        <o:OfficeDocumentSettings>
+          <o:AllowPNG/>
+          <o:PixelsPerInch>96</o:PixelsPerInch>
+        </o:OfficeDocumentSettings>
+      </xml>
+      <![endif]-->
+
+      <!--[if mso]>
+      <style>
+        * {
+          font-family: #{font_family} !important;
+        }
+      </style>
+      <![endif]-->
+
+      <!--[if !mso]><!-->
+        <link
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+          rel="stylesheet"
+          type="text/css"
+        />
+        <!--<![endif]-->
+
+        <style>
+          * {
+            font-family: #{font_family} !important;
+          }
+
+          :root {
+            color-scheme: light;
+            supported-color-schemes: light;
+          }
+
+          html, body {
+            margin: 0 auto !important;
+            padding: 0 !important;
+            height: 100% !important;
+            width: 100% !important;
+          }
+
+          * {
+            -ms-text-size-adjust: 100%;
+            -webkit-text-size-adjust: 100%;
+          }
+
+          div[style*="margin: 16px 0"] {
+            margin: 0 !important;
+          }
+
+          #MessageViewBody, #MessageWebViewDiv{
+            width: 100% !important;
+          }
+
+          table, td {
+            mso-table-lspace: 0pt !important;
+            mso-table-rspace: 0pt !important;
+          }
+
+          table {
+            border-spacing: 0 !important;
+            border-collapse: collapse !important;
+            table-layout: fixed !important;
+            margin: 0 auto !important;
+          }
+
+          img {
+            -ms-interpolation-mode:bicubic;
+          }
+
+          a {
+            text-decoration: none;
+          }
+
+          a[x-apple-data-detectors], .unstyle-auto-detected-links a, .aBn {
+            border-bottom: 0 !important;
+            cursor: default !important;
+            color: inherit !important;
+            text-decoration: none !important;
+            font-size: inherit !important;
+            font-family: inherit !important;
+            font-weight: inherit !important;
+            line-height: inherit !important;
+          }
+
+          .im {
+            color: inherit !important;
+          }
+
+          .a6S {
+            display: none !important;
+            opacity: 0.01 !important;
+          }
+
+          img.g-img + div {
+            display: none !important;
+          }
+
+          @media only screen and (min-device-width: 320px) and (max-device-width: 374px) {
+            u ~ div .email-container {
+              min-width: 320px !important;
+            }
+          }
+
+          @media only screen and (min-device-width: 375px) and (max-device-width: 413px) {
+            u ~ div .email-container {
+              min-width: 375px !important;
+            }
+          }
+
+          @media only screen and (min-device-width: 414px) {
+            u ~ div .email-container {
+              min-width: 414px !important;
+            }
+          }
+
+          .button-td, .button-a {
+            transition: all 100ms ease-in;
+          }
+
+          .button-td-primary:hover, .button-a-primary:hover {
+            background: #{primary_color} !important;
+            border-color: #{primary_color} !important;
+            filter: brightness(0.85);
+          }
+
+          @media screen and (max-width: 480px) {
+            .stack-column, .stack-column-center {
+              display: block !important;
+              width: 100% !important;
+              max-width: 100% !important;
+              direction: ltr !important;
+            }
+
+            .stack-column-center {
+              text-align: center !important;
+            }
+
+            .center-on-narrow {
+              text-align: center !important;
+              display: block !important;
+              margin-left: auto !important;
+              margin-right: auto !important;
+              float: none !important;
+            }
+
+            table.center-on-narrow {
+              display: inline-block !important;
+            }
+
+            .email-container p {
+              font-size: 17px !important;
+            }
+          }
+        </style>
+    """)
   end
 end
