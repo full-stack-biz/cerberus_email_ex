@@ -23,7 +23,13 @@ defmodule CerberusEmail.Components do
   attr(:email_title, :string, default: nil, doc: "Email <title>; falls back to brand_name")
   attr(:show_header, :boolean, default: true, doc: "Whether to show the header with brand name")
   attr(:brand_name, :string, default: "App", doc: "Product name shown in header and footer")
-  attr(:footer_text, :any, default: nil, doc: "Footer content; falls back to brand_name. Accepts a string or Phoenix.HTML.raw/1 for HTML.")
+
+  attr(:footer_text, :any,
+    default: nil,
+    doc:
+      "Footer content; falls back to brand_name. Accepts a string or Phoenix.HTML.raw/1 for HTML."
+  )
+
   attr(:primary_color, :string, default: "#3b82f6", doc: "Button/accent color")
 
   attr(:font_family, :string,
