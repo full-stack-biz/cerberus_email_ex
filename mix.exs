@@ -6,7 +6,7 @@ defmodule CerberusEmail.MixProject do
   def project do
     [
       app: :cerberus_email,
-      version: "0.1.1",
+      version: "0.1.2",
       elixir: "~> 1.20",
       start_permanent: Mix.env() == :prod,
       source_url: @source_url,
@@ -30,7 +30,7 @@ defmodule CerberusEmail.MixProject do
   defp deps do
     [
       {:phoenix_live_view, "~> 1.1"},
-      {:vibe_kit, "~> 0.1"},
+      {:vibe_kit, "~> 0.1", only: :dev, runtime: false},
       {:ex_slop, "~> 0.4", only: [:dev, :test], runtime: false},
       {:reach, "~> 2.0", only: [:dev, :test], runtime: false},
       {:ex_dna, "~> 1.0", only: [:dev, :test], runtime: false},
