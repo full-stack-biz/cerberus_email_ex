@@ -45,7 +45,8 @@ defmodule CerberusEmail.MixProject do
     [
       licenses: ["MIT"],
       description: "Cross-client-tested responsive email components for Phoenix",
-      links: %{"GitHub" => @source_url}
+      links: %{"GitHub" => @source_url},
+      files: ~w(lib mix.exs README.md CHANGELOG.md usage-rules.md)
     ]
   end
 
