@@ -19,7 +19,7 @@ Import one module; all share component names and the `Theme`.
 ```elixir
 def deps do
   [
-    {:cerberus_email, "~> 0.1"}
+    {:cerberus_email, "~> 0.2"}
   ]
 end
 ```

@@ -106,6 +106,7 @@ git flow bugfix start <name> --no-fetch     # same, bugfix/ prefix
 | Do not commit, tag, push or finish without the operator's request | global CLAUDE.md |
 | Never run `mix hex.publish` or `mix hex.owner` | publishing to Hex is the operator's |
 | A git write command runs alone, without a pipe | operator's rule |
+| No `Co-Authored-By` or other AI attribution trailers in commit, merge or tag messages | operator's rule |
 | `mix ci` and the cerberus-fidelity check pass before a release starts; there are no git hooks to run them | `.git/hooks` has only samples |
 | Never `git merge` main into develop by hand after a finish | auto-update did it |
 | A tag without `v` breaks the series and the CHANGELOG compare links | every tag is `vX.Y.Z` |

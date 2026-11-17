@@ -6,7 +6,7 @@ defmodule CerberusEmail.MixProject do
   def project do
     [
       app: :cerberus_email,
-      version: "0.1.2",
+      version: "0.2.0",
       elixir: "~> 1.20",
       start_permanent: Mix.env() == :prod,
       source_url: @source_url,
