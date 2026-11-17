@@ -30,4 +30,4 @@ mix ci          # full gate: compile --warnings-as-errors, format check, test,
 
 ## Release
 
-git-flow-next: work on `develop` (or `feature/`, `bugfix/` branches); `main` only receives release/hotfix merges tagged `vX.Y.Z`. Follow the `git-flow` skill (`.claude/skills/git-flow/`) for releases: the version (`mix.exs`, README install snippet, `CHANGELOG.md`) is set on the `release/vX.Y.Z` branch, never on `develop` or `main`. Never run `mix hex.publish`.
+git-flow-next: work on `develop` (or `feature/`, `bugfix/` branches); `main` only receives release/hotfix merges tagged `vX.Y.Z`. Follow the `git-flow` skill (`.claude/skills/git-flow/`) for releases: the version (`mix.exs`, README install snippet, `CHANGELOG.md`) is set on the `release/vX.Y.Z` branch, never on `develop` or `main`. Never run `mix hex.publish`. Never add `Co-Authored-By` (or any AI attribution) trailers to commit messages or PRs.
