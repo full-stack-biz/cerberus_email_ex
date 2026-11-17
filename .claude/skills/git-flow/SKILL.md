@@ -79,8 +79,11 @@ push:
 git push origin main develop vX.Y.Z    # one git command: the branches and the tag together
 ```
 
-`develop` does not exist on origin until that first push. After it, check: `git tag -n1 vX.Y.Z`
-(on main's merge commit), `git merge-base --is-ancestor vX.Y.Z develop`. Then tell the operator
+When `main` has no commits the release branch lacks, `finish` fast-forwards `main` instead of
+making a merge commit (v0.2.0 did): the tag then sits on the release branch's last commit. Either
+way `main` and `vX.Y.Z` point at the same commit. After the push, check:
+`git rev-parse main 'vX.Y.Z^{commit}'` (the two hashes are equal; keep the quotes in zsh), `git merge-base --is-ancestor vX.Y.Z develop`,
+`git ls-remote origin main develop vX.Y.Z` (matches local). Then tell the operator
 the tag is pushed; they publish to Hex.
 
 ## Hotfix
