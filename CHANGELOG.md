@@ -5,6 +5,13 @@ All notable changes to this project are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.2.2] - 2026-11-18
+
+### Changed
+
+- `usage-rules.md`: testing note that HEEx renders quotes in inline styles as `&#39;`
+  (`font-family: &#39;Inter&#39;, sans-serif`), and what to assert on instead.
+
 ## [0.2.1] - 2026-11-17
 
 ### Added
@@ -56,5 +63,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - The `AllowPNG` Outlook document setting and the footer's `font-weight`, which are not in
   Cerberus.
 
+[0.2.2]: https://github.com/full-stack-biz/cerberus_email_ex/compare/v0.2.1...v0.2.2
 [0.2.1]: https://github.com/full-stack-biz/cerberus_email_ex/compare/v0.2.0...v0.2.1
 [0.2.0]: https://github.com/full-stack-biz/cerberus_email_ex/compare/v0.1.2...v0.2.0
