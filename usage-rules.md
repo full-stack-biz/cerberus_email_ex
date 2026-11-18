@@ -92,3 +92,8 @@ footer, attrs `background_color`, `color`).
 
 Rendering proves nothing about how Gmail, Outlook or Apple Mail show the email. Send changed
 templates through Litmus or Email on Acid before shipping.
+
+When asserting on the rendered binary, remember HEEx escapes quotes inside attributes: the
+default font renders as `font-family: &#39;Inter&#39;, sans-serif` in inline `style`s (valid HTML;
+clients decode it). Assert on the escaped form, on a theme value without quotes (a color), or on
+the font link (`fonts.googleapis.com/css2?family=Inter`) instead of the literal `'Inter'`.
