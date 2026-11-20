@@ -72,6 +72,17 @@ defmodule CerberusEmail.ThemeAndBlocksTest do
       refute layout(Theme.new(dark_mode: false)) =~ "prefers-color-scheme"
     end
 
+    test "darkmode-muted gets dark_muted_color" do
+      assert layout(Theme.new(dark_muted_color: "#777777")) =~
+               ~r/\.darkmode-muted \{\s*color: #777777 !important;/
+    end
+
+    test "secondary button and text brand name follow dark mode" do
+      html = layout(Theme.new(dark_content_background: "#123456"))
+      assert html =~ ~r/td\.button-td-secondary a \{\s*background: #123456 !important;/
+      assert html =~ ~s(<div class="darkmode-text")
+    end
+
     test "Outlook wrapper and body use theme background" do
       html = layout(Theme.new(background_color: "#101010"))
 

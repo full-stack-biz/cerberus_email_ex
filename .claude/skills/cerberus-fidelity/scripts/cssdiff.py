@@ -11,6 +11,8 @@ import sys
 def css(path):
     html = open(path, encoding="utf-8").read()
     text = " ".join(re.findall(r"<style>(.*?)</style>", html, re.S))
+    # Color-only rules this library adds to the dark mode block; not in upstream.
+    text = re.sub(r"/\* Theme addition : BEGIN \*/.*?/\* Theme addition : END \*/", "", text, flags=re.S)
     text = re.sub(r"/\*.*?\*/", "", text, flags=re.S)
     text = re.sub(r"#[0-9A-Fa-f]{3,6}\b", "#COLOR", text)
     text = re.sub(r"font-family:[^;]+;", "font-family:F;", text)

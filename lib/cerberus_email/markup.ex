@@ -270,7 +270,10 @@ defmodule CerberusEmail.Markup do
             style={"height: auto; #{image_style(@theme, "15px")}"}
           />
         <% else %>
-          <div style={"font-family: #{@theme.font_family}; font-size: 24px; font-weight: 700; color: #{@theme.brand_color};"}>
+          <div
+            class="darkmode-text"
+            style={"font-family: #{@theme.font_family}; font-size: 24px; font-weight: 700; color: #{@theme.brand_color};"}
+          >
             {@brand_name}
           </div>
         <% end %>
@@ -379,6 +382,17 @@ defmodule CerberusEmail.Markup do
         .email-container a:not([class]) {
             color: #{t.dark_text_color} !important;
         }
+        /* Theme addition : BEGIN */
+        .darkmode-muted {
+            color: #{t.dark_muted_color} !important;
+        }
+        td.button-td-secondary,
+        td.button-td-secondary a {
+            background: #{t.dark_content_background} !important;
+            border-color: #{t.dark_muted_color} !important;
+            color: #{t.dark_text_color} !important;
+        }
+        /* Theme addition : END */
         td.button-td-primary,
         td.button-td-primary a {
             background: #{t.dark_button_color} !important;

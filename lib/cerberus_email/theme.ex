@@ -47,6 +47,7 @@ defmodule CerberusEmail.Theme do
             dark_background_color: "#111111",
             dark_content_background: "#222222",
             dark_text_color: "#F7F7F9",
+            dark_muted_color: "#aaaaaa",
             dark_button_color: "#ffffff",
             dark_button_text_color: "#222222",
             dark_button_hover_color: "#cccccc",

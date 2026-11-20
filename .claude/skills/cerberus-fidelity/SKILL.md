@@ -48,7 +48,7 @@ delete that directory to re-fetch the latest upstream.
 | `scripts/verify.sh [work_dir]` | Orchestrates: clone upstream if missing → render 3 templates → run both diffs. Use this. |
 | `scripts/render.exs <template> <out.html>` | `mix run` it to render every block of `hybrid`/`responsive`/`fluid` in upstream block order. |
 | `scripts/structdiff.py <upstream> <ported>` | Body layout diff. Unwraps `<!--[if mso]>` comments (Outlook markup counts). Per tag compares name, attributes (minus `src`/`alt`/`href`) and inline style properties minus colors/fonts. Skips text tags (`p`, `h1`, `ul`, ...). |
-| `scripts/cssdiff.py <upstream> <ported>` | `<head>` CSS diff, rule by rule in order, comments stripped, hex colors and `font-family` masked. |
+| `scripts/cssdiff.py <upstream> <ported>` | `<head>` CSS diff, rule by rule in order, comments stripped, hex colors and `font-family` masked. Skips rules between `/* Theme addition : BEGIN */` and `/* Theme addition : END */` (color-only dark mode rules the library adds, e.g. `.darkmode-muted`); never wrap layout CSS in it. |
 
 Run Python with `-I` (isolated mode), as `verify.sh` does. After editing `verify.sh`, run
 `shellcheck -o all .claude/skills/cerberus-fidelity/scripts/verify.sh` (must be clean,

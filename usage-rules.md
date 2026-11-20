@@ -53,6 +53,13 @@ html =
   to load no web font. Windows Outlook always gets `fallback_font_family` (default `sans-serif`).
 - Dark mode styles are on by default (`color-scheme: light dark`). `dark_mode: false` removes
   them; colors under dark mode come from the `dark_*` fields.
+- Dark mode recolors `p`, `li`, `h1`–`h3` and plain links to `dark_text_color` with
+  `!important`, overriding inline colors. For other text (a `span`, `td`, `div`) add
+  `class="darkmode-text"` to get the same color. For muted text (e.g. a grey
+  `muted_color` note) add `class="darkmode-muted"`: it gets `dark_muted_color` (default
+  `#aaaaaa`) instead of turning body-text white. Clients without dark mode styles keep the
+  inline color. The text brand name (no `logo_src`) and the secondary button follow dark mode
+  too (`dark_text_color`, `dark_content_background`, border `dark_muted_color`).
 - `image_placeholder_color` (default `#dddddd`) is the background every image shows while
   blocked or loading. A transparent logo shows it as a box; set `image_placeholder_color: nil`
   to drop it so the page color shows through in light and dark mode.
