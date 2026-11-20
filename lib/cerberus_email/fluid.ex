@@ -170,7 +170,7 @@ defmodule CerberusEmail.Fluid do
                       height=""
                       alt={col.image_alt}
                       border="0"
-                      style={"width: 100%; max-width: 200px; background: #{@theme.image_placeholder_color}; #{image_text_style(@theme, "15px")}"}
+                      style={"width: 100%; max-width: 200px; #{image_style(@theme, "15px")}"}
                     />
                   </td>
                 </tr>

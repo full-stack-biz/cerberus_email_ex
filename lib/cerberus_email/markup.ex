@@ -74,6 +74,14 @@ defmodule CerberusEmail.Markup do
     do:
       "font-family: #{theme.font_family}; font-size: 15px; line-height: #{line_height}; color: #{theme.text_color};"
 
+  # Cerberus gives every img a placeholder background; `image_placeholder_color: nil` drops it
+  # (e.g. a transparent logo that should show the page color in light and dark mode).
+  def image_style(%{image_placeholder_color: nil} = theme, line_height),
+    do: image_text_style(theme, line_height)
+
+  def image_style(theme, line_height),
+    do: "background: #{theme.image_placeholder_color}; #{image_text_style(theme, line_height)}"
+
   def join_style(base, nil), do: base
   def join_style(base, extra), do: "#{base} #{extra}"
 
@@ -230,7 +238,7 @@ defmodule CerberusEmail.Markup do
           height=""
           alt={@alt}
           border="0"
-          style={"width: 100%; max-width: #{@width}px; height: auto; background: #{@theme.image_placeholder_color}; #{image_text_style(@theme, "15px")} margin: auto; display: block;"}
+          style={"width: 100%; max-width: #{@width}px; height: auto; #{image_style(@theme, "15px")} margin: auto; display: block;"}
           class="g-img"
         />
       </td>
@@ -259,7 +267,7 @@ defmodule CerberusEmail.Markup do
             height={@logo_height}
             alt={@brand_name}
             border="0"
-            style={"height: auto; background: #{@theme.image_placeholder_color}; #{image_text_style(@theme, "15px")}"}
+            style={"height: auto; #{image_style(@theme, "15px")}"}
           />
         <% else %>
           <div style={"font-family: #{@theme.font_family}; font-size: 24px; font-weight: 700; color: #{@theme.brand_color};"}>

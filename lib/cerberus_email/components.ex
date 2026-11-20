@@ -576,7 +576,7 @@ defmodule CerberusEmail.Components do
                           height=""
                           border="0"
                           alt={col.image_alt}
-                          style={"width: 100%; max-width: #{@image_px}px; height: auto; background: #{@theme.image_placeholder_color}; #{image_text_style(@theme, "20px")}"}
+                          style={"width: 100%; max-width: #{@image_px}px; height: auto; #{image_style(@theme, "20px")}"}
                           class="center-on-narrow"
                         />
                       </td>
@@ -666,7 +666,7 @@ defmodule CerberusEmail.Components do
                         border="0"
                         alt={@image_alt}
                         class="center-on-narrow"
-                        style={"width: 100%; max-width: 200px; height: auto; background: #{@theme.image_placeholder_color}; #{image_text_style(@theme, "15px")}"}
+                        style={"width: 100%; max-width: 200px; height: auto; #{image_style(@theme, "15px")}"}
                       />
                     </td>
                   </tr>

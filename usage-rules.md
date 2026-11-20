@@ -53,6 +53,9 @@ html =
   to load no web font. Windows Outlook always gets `fallback_font_family` (default `sans-serif`).
 - Dark mode styles are on by default (`color-scheme: light dark`). `dark_mode: false` removes
   them; colors under dark mode come from the `dark_*` fields.
+- `image_placeholder_color` (default `#dddddd`) is the background every image shows while
+  blocked or loading. A transparent logo shows it as a box; set `image_placeholder_color: nil`
+  to drop it so the page color shows through in light and dark mode.
 - `button_hover_color` defaults to `primary_color` (no visible hover); set it for one.
 
 ## Blocks

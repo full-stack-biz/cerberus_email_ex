@@ -21,6 +21,9 @@ defmodule CerberusEmail.Theme do
   `nil` button colors fall back to `primary_color`. Dark mode colors apply in clients that
   support `prefers-color-scheme`; set `dark_mode: false` to drop the dark mode styles
   (Cerberus documents this as safe to remove).
+
+  `image_placeholder_color` is the background images show while blocked or loading;
+  `nil` drops it, so transparent images (a logo) show the page color in light and dark mode.
   """
 
   defstruct primary_color: "#3b82f6",

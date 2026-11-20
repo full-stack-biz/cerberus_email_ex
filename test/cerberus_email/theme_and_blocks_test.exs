@@ -92,6 +92,22 @@ defmodule CerberusEmail.ThemeAndBlocksTest do
         """)
 
       assert html =~ ~s(src="https://x.io/logo.png" width="200" height="50" alt="Acme")
+      assert html =~ "background: #dddddd"
+    end
+
+    test "image_placeholder_color nil drops the image background" do
+      assigns = %{theme: Theme.new(image_placeholder_color: nil)}
+
+      html =
+        to_html(~H"""
+        <.email_layout brand_name="Acme" logo_src="https://x.io/logo.png" theme={@theme}>
+          <.email_hero_image theme={@theme} src="https://x.io/h.png" alt="h" />
+        </.email_layout>
+        """)
+
+      assert html =~ ~s(style="height: auto; font-family:)
+      refute html =~ "background: ;"
+      refute html =~ "#dddddd"
     end
   end
 

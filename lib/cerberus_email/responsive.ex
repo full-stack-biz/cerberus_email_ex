@@ -166,7 +166,7 @@ defmodule CerberusEmail.Responsive do
                         height=""
                         alt={col.image_alt}
                         border="0"
-                        style={"width: 100%; max-width: #{@image_px}px; height: auto; background: #{@theme.image_placeholder_color}; #{image_text_style(@theme, "15px")}"}
+                        style={"width: 100%; max-width: #{@image_px}px; height: auto; #{image_style(@theme, "15px")}"}
                       />
                     </td>
                   </tr>
@@ -233,7 +233,7 @@ defmodule CerberusEmail.Responsive do
                       alt={@image_alt}
                       border="0"
                       class="center-on-narrow"
-                      style={"height: auto; background: #{@theme.image_placeholder_color}; #{image_text_style(@theme, "15px")}"}
+                      style={"height: auto; #{image_style(@theme, "15px")}"}
                     />
                   </td>
                 </tr>
