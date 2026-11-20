@@ -5,6 +5,23 @@ All notable changes to this project are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.2.4] - 2026-11-20
+
+### Added
+
+- `Theme` `dark_muted_color` (default `#aaaaaa`) and the `darkmode-muted` class: muted text
+  (e.g. a grey note in a `p`) keeps a muted color in dark mode instead of turning
+  `dark_text_color` like body text.
+- `usage-rules.md` documents Cerberus's `darkmode-text` class for text outside `p`, `li` and
+  `h1`–`h3`.
+
+### Changed
+
+- Dark mode: the secondary button gets `dark_content_background`, a `dark_muted_color` border
+  and `dark_text_color` text instead of staying a white box.
+- Dark mode: the text brand name (header without `logo_src`) gets `dark_text_color` instead of
+  staying `brand_color`, which was near-invisible on the dark background.
+
 ## [0.2.3] - 2026-11-20
 
 ### Added
@@ -71,6 +88,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - The `AllowPNG` Outlook document setting and the footer's `font-weight`, which are not in
   Cerberus.
 
+[0.2.4]: https://github.com/full-stack-biz/cerberus_email_ex/compare/v0.2.3...v0.2.4
 [0.2.3]: https://github.com/full-stack-biz/cerberus_email_ex/compare/v0.2.2...v0.2.3
 [0.2.2]: https://github.com/full-stack-biz/cerberus_email_ex/compare/v0.2.1...v0.2.2
 [0.2.1]: https://github.com/full-stack-biz/cerberus_email_ex/compare/v0.2.0...v0.2.1
